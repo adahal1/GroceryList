@@ -37,8 +37,15 @@ function addItem(){
     iconClose.classList.add("glyphicon-remove");
     btnClose.appendChild(iconClose);
     var itemName = document.createTextNode(input);
+    btnClose.addEventListener("click", removeParentListItem);
     item.appendChild(itemName);
     item.appendChild(btnClose);
     list.appendChild(item);
     document.getElementById("newItem").value = "";
+}
+
+function removeParentListItem(){
+    var mom = this.parentNode;
+    var grandma = mom.parentNode;
+    grandma.removeChild(mom);
 }
