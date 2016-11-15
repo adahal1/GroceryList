@@ -1,4 +1,4 @@
-
+var mylist = [];
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) { 
     var d = new Date();
@@ -24,6 +24,9 @@ function getCookie(cname) {
 
 function addItem(){
     var input = document.getElementById("newItem").value;
+    if(mylist.indexOf(input) == -1){
+    mylist.push(input);
+    console.log(mylist.toString());
     var list = document.getElementById("listDisplay");
     var item = document.createElement("li");
     var btnClose;
@@ -42,6 +45,7 @@ function addItem(){
     item.appendChild(btnClose);
     list.appendChild(item);
     document.getElementById("newItem").value = "";
+    }
 }
 
 function removeParentListItem(){
