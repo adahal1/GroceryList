@@ -26,8 +26,19 @@ function addItem(){
     var input = document.getElementById("newItem").value;
     var list = document.getElementById("listDisplay");
     var item = document.createElement("li");
+    var btnClose;
+    btnClose = document.createElement("button");
+    btnClose.classList.add("btn");
+    btnClose.classList.add("btn-danger");
+    btnClose.classList.add("btn-xs");
+    var iconClose;
+    iconClose = document.createElement("span");
+    iconClose.classList.add("glyphicon");
+    iconClose.classList.add("glyphicon-remove");
+    btnClose.appendChild(iconClose);
     var itemName = document.createTextNode(input);
     item.appendChild(itemName);
+    item.appendChild(btnClose);
     list.appendChild(item);
     document.getElementById("newItem").value = "";
 }
