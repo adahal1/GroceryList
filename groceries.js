@@ -57,3 +57,14 @@ function removeParentListItem(){
     console.log(mylist);
     grandma.removeChild(mom);
 }
+
+function saveList(){
+    var list = mylist.toString();
+    setCookie("cookie", list, 7)
+}
+
+function clearList(){
+    document.getElementById("listDisplay").innerHTML = "";
+    mylist.splice(0,mylist.length);
+
+}
