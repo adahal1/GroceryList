@@ -1,4 +1,5 @@
 var mylist = [];
+window.onload = loadCookieList;
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) { 
     var d = new Date();
@@ -24,6 +25,31 @@ function getCookie(cname) {
 
 function addItem(){
     var input = document.getElementById("newItem").value;
+    displayItem(input);
+}
+
+function removeParentListItem(){
+    var mom = this.parentNode;
+    var grandma = mom.parentNode;
+    var itemRemove = mom.firstChild.textContent;
+    var itemIndex = mylist.indexOf(itemRemove);
+    mylist.splice(itemIndex, 1);
+    console.log(mylist);
+    grandma.removeChild(mom);
+}
+
+function saveList(){
+    var list = mylist.toString();
+    setCookie("cookie", list, 7)
+}
+
+function clearList(){
+    document.getElementById("listDisplay").innerHTML = "";
+    mylist.splice(0,mylist.length);
+
+}
+
+function displayItem(input){
     if(mylist.indexOf(input) == -1){
     mylist.push(input);
     console.log(mylist.toString());
@@ -48,23 +74,11 @@ function addItem(){
     }
 }
 
-function removeParentListItem(){
-    var mom = this.parentNode;
-    var grandma = mom.parentNode;
-    var itemRemove = mom.firstChild.textContent;
-    var itemIndex = mylist.indexOf(itemRemove);
-    mylist.splice(itemIndex, 1);
-    console.log(mylist);
-    grandma.removeChild(mom);
-}
-
-function saveList(){
-    var list = mylist.toString();
-    setCookie("cookie", list, 7)
-}
-
-function clearList(){
-    document.getElementById("listDisplay").innerHTML = "";
-    mylist.splice(0,mylist.length);
-
+function loadCookieList(){
+    var random = getCookie("cookie");
+    var arrayCookie = [];
+    arrayCookie = random.split(',');
+    for (var i = 0; i < arrayCookie.length; i++) {
+    displayItem(arrayCookie[i]);
+    }
 }
